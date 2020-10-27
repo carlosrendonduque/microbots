@@ -18,3 +18,4 @@
 //If Orchestrator queues are not used, the status can be set, for example, by writing to a specific column in a spreadsheet. 
 //In such cases, the retry mechanism is covered by the framework and the number of retries is defined in the configuration file.
 //At the end, io_TransactionNumber is incremented, which makes the framework get the next transaction to be processed.
+//TODO implement all kind of exceptions and transitions
