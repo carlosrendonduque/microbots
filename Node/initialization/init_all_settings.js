@@ -8,25 +8,46 @@
     }
     initialize_all_settings() {
         try {
-
-            if (EXTERNAL_SETTINGS_API="") {
-                global.QUEUE_RABBIT_PUBLISHER= process.env.QUEUE_RABBIT_PUBLISHER;
-                global.QUEUE_RABBIT_CONSUMER= process.env.QUEUE_RABBIT_CONSUMER; 
-                global.LOGF_BUSINESS_PROCESS_NAME= process.env.LOGF_BUSINESS_PROCESS_NAME;
-                global.MAX_RETRY_NUMBER= process.env.MAX_RETRY_NUMBER; 
-                global.LOGMESSAGE_GET_TRANSACTION_DATA= process.env.LOGMESSAGE_GET_TRANSACTION_DATA; 
-                global.LOGMESSAGE_GET_TRANSACTION_DATA_ERROR= process.env.LOGMESSAGE_GET_TRANSACTION_DATA_ERROR;
-                global.LOGMESSAGE_SUCCESS= process.env.LOGMESSAGE_SUCCESS;
-                global.LOGMESSAGE_BUSINESS_RULE_EXCEPTION= process.env.LOGMESSAGE_BUSINESS_RULE_EXCEPTION; 
-                global.LOGMESSAGE_APPLICATION_EXCEPTION= process.env.LOGMESSAGE_APPLICATION_EXCEPTION;
-                global.RABBIT_CONNECTION = process.env.RABBIT_CONNECTION; 
-
+            if (process.env.ENVIRONMENT !== 'production') {   
+                require('dotenv').config();
+                global.CONFIG['QUEUE_RABBIT_PUBLISHER'] = process.env.QUEUE_RABBIT_PUBLISHER;
+                global.CONFIG['QUEUE_RABBIT_CONSUMER'] = process.env.QUEUE_RABBIT_CONSUMER;
+                global.CONFIG['LOGF_BUSINESS_PROCESS_NAME'] = process.env.LOGF_BUSINESS_PROCESS_NAME;
+                global.CONFIG['MAX_RETRY_NUMBER'] = process.env.MAX_RETRY_NUMBER;
+                global.CONFIG['LOGMESSAGE_GET_TRANSACTION_DATA'] = process.env.LOGMESSAGE_GET_TRANSACTION_DATA;
+                global.CONFIG['LOGMESSAGE_GET_TRANSACTION_DATA_ERROR'] = process.env.LOGMESSAGE_GET_TRANSACTION_DATA_ERROR;
+                global.CONFIG['LOGMESSAGE_SUCCESS'] = process.env.LOGMESSAGE_SUCCESS;
+                global.CONFIG['LOGMESSAGE_BUSINESS_RULE_EXCEPTION'] = process.env.LOGMESSAGE_BUSINESS_RULE_EXCEPTION;
+                global.CONFIG['LOGMESSAGE_APPLICATION_EXCEPTION'] = process.env.LOGMESSAGE_APPLICATION_EXCEPTION;
+                global.CONFIG['RABBIT_CONNECTION'] = process.env.RABBIT_CONNECTION;
+                global.CONFIG['QUEUE_RABBIT_PUBLISHER'] = process.env.QUEUE_RABBIT_PUBLISHER;
             }
             else {
-                let fabNum = fabObj.calculateFibonacciValue(num);
-                channel.assertQueue(queueName, { durable: false });
-                channel.sendToQueue(queueName, Buffer.from(fabNum.toString()));
-                console.log(`Queue Name is - ${queueName}`);
+                //Replace this dictionary with an external API call in a production environment
+                global.EXTERNAL_SETTINGS_API= process.env.EXTERNAL_SETTINGS_API;
+                
+                var EXTERNAL_CONFIG = {
+                  QUEUE_RABBIT_PUBLISHER: 'queue_test_microbot',
+                  QUEUE_RABBIT_CONSUMER: 'queue_test_microbot',
+                  LOGF_BUSINESS_PROCESS_NAME: 'framework',
+                  MAX_RETRY_NUMBER: '2',
+                  LOGMESSAGE_GET_TRANSACTION_DATA: 'Exception calling transaction number',
+                  LOGMESSAGE_GET_TRANSACTION_DATA_ERROR: 'Error getting transaction number',
+                  LOGMESSAGE_SUCCESS: 'Transaction Successful',
+                  LOGMESSAGE_BUSINESS_RULE_EXCEPTION: 'Business Rule Exception ',
+                  LOGMESSAGE_APPLICATION_EXCEPTION: 'System Exception ',
+                  RABBIT_CONNECTION: 'amqp://localhost'
+                }
+                for(var key in EXTERNAL_CONFIG) {
+                  try {
+                    global.CONFIG[key] = EXTERNAL_CONFIG[key];
+                  }
+                  catch (e) {
+                  }
+                  finally {
+                  }
+                }
+                
             }
           }
           catch (e) {

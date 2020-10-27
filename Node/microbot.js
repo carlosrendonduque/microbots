@@ -1,13 +1,17 @@
+require('dotenv').config();
+
 const InitObj = require("./initialization/initialization");
+
+
+//Pre-initialization
+global.CONFIG = []; // create an empty CONFIG dictionary when the bot is starting
 
 //initialization
 //Read configuration file and initialize applications used in the process.
+let Result = InitObj.initialize()
 
-let InitResult = InitObj.initialize()
+console.log(global.CONFIG.MAX_RETRY_NUMBER)
 
-console.log(InitResult)
-console.log(global.system_exception)
-console.log(process.env.LOGMESSAGE_APPLICATION_EXCEPTION)
 
 //get_transaction_data
 //Get the transactions to be processed.
