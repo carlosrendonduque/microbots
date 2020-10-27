@@ -7,7 +7,7 @@
     }
     initialize_all_settings() {
         try {
-            if (process.env.ENVIRONMENT !== 'production') {   
+            if (process.env.MICROBOT_ENVIRONMENT !== 'production') {   
                 require('dotenv').config();
                 global.CONFIG['QUEUE_RABBIT_PUBLISHER'] = process.env.QUEUE_RABBIT_PUBLISHER;
                 global.CONFIG['QUEUE_RABBIT_CONSUMER'] = process.env.QUEUE_RABBIT_CONSUMER;
@@ -20,6 +20,7 @@
                 global.CONFIG['LOGMESSAGE_APPLICATION_EXCEPTION'] = process.env.LOGMESSAGE_APPLICATION_EXCEPTION;
                 global.CONFIG['RABBIT_CONNECTION'] = process.env.RABBIT_CONNECTION;
                 global.CONFIG['QUEUE_RABBIT_PUBLISHER'] = process.env.QUEUE_RABBIT_PUBLISHER;
+                global.CONFIG['ORCHESTRATOR_QUEUE_NAME'] = process.env.ORCHESTRATOR_QUEUE_NAME;
             }
             else {
                 //Replace this dictionary with an external API call in a production environment
@@ -35,7 +36,8 @@
                   LOGMESSAGE_SUCCESS: 'Transaction Successful',
                   LOGMESSAGE_BUSINESS_RULE_EXCEPTION: 'Business Rule Exception ',
                   LOGMESSAGE_APPLICATION_EXCEPTION: 'System Exception ',
-                  RABBIT_CONNECTION: 'amqp://localhost'
+                  RABBIT_CONNECTION: 'amqp://localhost',
+                  ORCHESTRATOR_QUEUE_NAME: 'orchestrator_queue_name'
                 }
                 for(var key in EXTERNAL_CONFIG) {
                   try {
