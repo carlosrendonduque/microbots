@@ -1,4 +1,3 @@
-
 //Initialize, populate and output the configuration values to be used throughout the project.
 
 
@@ -58,6 +57,7 @@
           finally {
           }
     }
+
   }
   
   module.exports = new init_all_settings();

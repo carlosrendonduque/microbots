@@ -2,6 +2,7 @@
 //Read configuration file and initialize applications used in the process.
 
 const InitAllSetObj = require("./init_all_settings");
+const KillAllObj = require("../end_process/kill_all_processes");
 
 //initialization
 //Read configuration file and initialize applications used in the process.
@@ -20,6 +21,7 @@ class initialization {
         //If first run, read configuration
         if (global.CONFIG = []){
           let Result = InitAllSetObj.initialize_all_settings() 
+          KillAllObj.kill_all_processes() 
         }
         else
         {
