@@ -8,11 +8,13 @@ class save_log {
     save_log(LogLevel, Message) {
 
       try {
+          //global.LogLevel = LogLevel;
+          //global.LogMessage = Message;
           //TODO: Implement save log logic in the backend and the calling here
-            console.log('LogLevel: ' + LogLevel + ' / ' + ' Message: ' +Message)
+            console.log('LogLevel: ' + LogLevel + ' / ' + ' Message: ' + Message)
         }
         catch (e) {
-
+          console.log(e);
         }
         finally {
 

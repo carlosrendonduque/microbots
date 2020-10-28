@@ -18,7 +18,7 @@ async function transitionToGetData(Transition) {
         console.log("Successful")
         let body = await LoadDataObj.load_transaction_data();
         if (body) {
-            console.log(body);
+            //console.log(body);
         }
     }
     else {

@@ -13,9 +13,9 @@ class load_transaction_data {
   async load_transaction_data() {
 
     try {
+      LogObj.save_log("Trace", "Loading transaction data...")
       //TODO: Code to load transactions to be used in the business process being automated
       //An example with fake information is provided, please change the code below 
-      LogObj.save_log("Trace", "Loading transaction data...")
       const data = await fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
       return data

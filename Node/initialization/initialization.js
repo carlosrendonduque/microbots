@@ -1,11 +1,12 @@
 //initialization
 //Read configuration file and initialize applications used in the process.
 
-const InitAllSetObj = require("./init_all_settings");
-const KillAllObj = require("../end_process/kill_all_processes");
-const InitAllAppSetObj = require("./init_all_applications");
 
-const LogObj = require("../log/save_log");
+
+const initAllSetObj = require('./init_all_settings');
+const KillAllProObj = require('../end_process/kill_all_processes');
+const initAllAppObj = require('./init_all_applications');
+const savelogObj = require('../log/save_log');
 
 //initialization
 //Read configuration file and initialize applications used in the process.
@@ -23,10 +24,19 @@ class initialization {
         //Load configurations and open applications
         //If first run, read configuration
         if (global.CONFIG = []){
-          LogObj.save_log("Trace","Automation Started...")
-          InitAllSetObj.initialize_all_settings() 
-          KillAllObj.kill_all_processes() 
-          InitAllAppSetObj.init_all_applications()
+          require('dotenv').config();
+          global.LOG_PROCESS=[];
+          global.LOG_PROCESS['AUTOMATION_STARTED']="";
+          global.LOG_PROCESS['KILLING_PROCESSES']="";
+          global.LOG_PROCESS['OPENING_APPLICATIONS']="";
+          global.LOG_PROCESS['LOADING_TRANSACTION_DATA']="";
+
+          global.LOG_PROCESS['AUTOMATION_STARTED'] = process.env.LOGMESSAGE_AUTOMATION_STARTED;
+          savelogObj.save_log("Trace", global.LOG_PROCESS['AUTOMATION_STARTED']);
+          
+          initAllSetObj.initialize_all_settings() 
+          KillAllProObj.kill_all_processes() 
+          initAllAppObj.init_all_applications()
           
         }
         else
@@ -49,4 +59,3 @@ class initialization {
 }
 
 module.exports = new initialization();
-
