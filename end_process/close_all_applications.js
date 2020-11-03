@@ -7,8 +7,6 @@ class close_all_applications {
 
   }
 
-
-
   async close_all_applications() {
 
     try {

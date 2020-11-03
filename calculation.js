@@ -3,8 +3,8 @@ const fs = require('fs')
 
 // provide a scope
 let scope = {
-    a: 3,
-    b: 14
+  a: 3,
+  b: 14
 }
 
 /* let Num = operationObj.calculateValue('a * b','a + b','a * b','a / b','a * b',
@@ -26,53 +26,51 @@ let Num2 = operationObj.calculateValueAtOnce(scope, [
 
 console.log(Num3[2]) */
 
-function loadJSON(filename=''){
-    return JSON.parse(
-        fs.existsSync(filename)
-        ? fs.readFileSync(filename).toString()
-        : '""'
-    )
+function loadJSON(filename = '') {
+  return JSON.parse(
+    fs.existsSync(filename)
+      ? fs.readFileSync(filename).toString()
+      : '""'
+  )
 }
 
-function saveJSON(filename='', json='""'){
-    return fs.writeFileSync(
-        filename, 
-        JSON.stringify(
-            json,
-            null,
-            2
-        )
+function saveJSON(filename = '', json = '""') {
+  return fs.writeFileSync(
+    filename,
+    JSON.stringify(
+      json,
+      null,
+      2
     )
+  )
 }
 
 const data = loadJSON('data.json')
 
 var hours = 0;
-var rate_per_hour=0;
+var rate_per_hour = 0;
 
 data.forEach(obj => {
-    Object.entries(obj).forEach(([key, value]) => {
+  Object.entries(obj).forEach(([key, value]) => {
     console.log(`${key} ${value}`);
 
+    hours = (key == 'hours') ? value : hours;
+    rate_per_hour = (key == 'rate_per_hour') ? value : rate_per_hour;
 
+  });
+  // provide a scope
+  let scope = {
+    hours,
+    rate_per_hour
+  }
+  /*     let Result = operationObj.calculateValue('hours * rate_per_hour','hours + rate_per_hour','hours * rate_per_hour','hours / rate_per_hour','hours * rate_per_hour',
+                                  'hours * rate_per_hour','hours + rate_per_hour','hours + rate_per_hour','hours * rate_per_hour','hours * rate_per_hour',scope);
+   */
+  let Result = operationObj.calculateValue('hours * rate_per_hour / 2', '0', '0', '0', '0',
+    '0', '0', '0', '0', '0', scope);
 
-    hours = (key=='hours') ? value: hours;
-    rate_per_hour = (key=='rate_per_hour')  ? value : rate_per_hour;
-    
-    });
-    // provide a scope
-    let scope = {
-        hours,
-        rate_per_hour
-    }
-/*     let Result = operationObj.calculateValue('hours * rate_per_hour','hours + rate_per_hour','hours * rate_per_hour','hours / rate_per_hour','hours * rate_per_hour',
-                                'hours * rate_per_hour','hours + rate_per_hour','hours + rate_per_hour','hours * rate_per_hour','hours * rate_per_hour',scope);
- */
-    let Result = operationObj.calculateValue('hours * rate_per_hour / 2','0','0','0','0',
-    '0','0','0','0','0',scope);
-
-    console.log('Result : ' + Result);
-    console.log('-------------------');
+  console.log('Result : ' + Result);
+  console.log('-------------------');
 });
 
 // data.push(4)

@@ -5,24 +5,23 @@ const CoreObj = require("../core_activities/core_activities");
 
 
 class process {
-    constructor() {
-  
+  constructor() {
+
+  }
+  process(transaction_identifier, obj) {
+
+    try {
+
+      //TODO: Impement automation here
+
     }
-    process(transaction_identifier, obj) {
+    catch (e) {
 
-      try {
+    }
+    finally {
 
-          //TODO: Impement automation here
-
-        }
-        catch (e) {
-
-        }
-        finally {
-
-        }
     }
   }
-  
-  module.exports = new process();
-  
+}
+
+module.exports = new process();

@@ -6,26 +6,25 @@ const CoreObj = require("../core_activities/core_activities");
 const ProcessObj = require("./process");
 
 class process_transaction {
-    constructor() {
-  
+  constructor() {
+
+  }
+  process_transaction(transaction_identifier, obj) {
+
+    try {
+
+      global.TRANSITIONS['NEW_TRANSACTION'] = process.env.LOGMESSAGE_TRANSITION_NEW_TRANSACTION
+      CoreObj.save_log("Trace", global.TRANSITIONS['NEW_TRANSACTION'] + ': ' + transaction_identifier)
+      CoreObj.save_log("Trace", process.env.LOGMESSAGE_STATE_TRANSACTION_IN_PROGRESS + ': ' + transaction_identifier)
+      CoreObj.save_log("Trace", process.env.LOGMESSAGE_STATE_TRANSACTION_PROCESSED + ': ' + transaction_identifier)
     }
-    process_transaction(transaction_identifier, obj) {
+    catch (e) {
 
-      try {
+    }
+    finally {
 
-          global.TRANSITIONS['NEW_TRANSACTION']= process.env.LOGMESSAGE_TRANSITION_NEW_TRANSACTION
-          CoreObj.save_log("Trace", global.TRANSITIONS['NEW_TRANSACTION'] + ': ' + transaction_identifier)
-          CoreObj.save_log("Trace", process.env.LOGMESSAGE_STATE_TRANSACTION_IN_PROGRESS + ': ' + transaction_identifier)
-          CoreObj.save_log("Trace", process.env.LOGMESSAGE_STATE_TRANSACTION_PROCESSED + ': ' + transaction_identifier)
-        }
-        catch (e) {
-
-        }
-        finally {
-
-        }
     }
   }
-  
-  module.exports = new process_transaction();
-  
+}
+
+module.exports = new process_transaction();

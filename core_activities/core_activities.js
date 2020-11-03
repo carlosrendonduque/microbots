@@ -7,7 +7,6 @@ class core_activities {
 
   }
 
-
   message(LogLevel, Message) {
     return new Promise(resolve => {
       resolve = 'LogLevel: ' + LogLevel + ' / ' + ' Message: ' + Message
@@ -49,7 +48,6 @@ class core_activities {
       else {
 
       }
-
 
     }
     catch (e) {
