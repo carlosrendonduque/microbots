@@ -57,7 +57,7 @@
             }
           }
           catch (e) {
-            global.state = process.env.LOGMESSAGE_APPLICATION_EXCEPTION;
+            global.state = process.env.LOGMESSAGE_TRANSITION_SYSTEM_EXCEPTION;
             global.system_exception=e;
             // console.log(e);
           }

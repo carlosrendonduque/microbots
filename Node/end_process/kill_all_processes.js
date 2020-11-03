@@ -1,6 +1,6 @@
 //Use the Kill Process activity to force the termination of  processes representing applications used in the business process being automated.
 //Note that killing processes might have undesirable outcomes, such as losing unsaved changes to files.
-const LogObj = require("../log/save_log");
+const CoreObj = require("../core_activities/core_activities");
 
 class kill_all_processes {
     constructor() {
@@ -9,8 +9,10 @@ class kill_all_processes {
     kill_all_processes() {
 
       try {
+
+          global.LOG_PROCESS['KILLING_PROCESSES'] = process.env.LOGMESSAGE_KILLING_PROCESSES;
           //TODO: Code to force the termination of  processes representing applications used in the business process being automated
-          LogObj.save_log("Trace","Killing processes...")
+          CoreObj.save_log("Trace", global.LOG_PROCESS['KILLING_PROCESSES'])
         }
         catch (e) {
 

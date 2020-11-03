@@ -5,7 +5,6 @@ const InitAllSetObj = require("../initialization/init_all_settings");
 const KillAllObj = require("../end_process/kill_all_processes");
 const InitAllAppSetObj = require("../initialization/init_all_applications");
 
-const LogObj = require("../log/save_log");
 
 describe('initialization.js tests', () => {
     describe('initialization.initialize() Test', () => {
