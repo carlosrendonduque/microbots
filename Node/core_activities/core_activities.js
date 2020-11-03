@@ -1,5 +1,6 @@
 
 //Save log to trace all the steps of the process of each robot
+const EndProcessObj = require("../end_process/end_process");
 
 class core_activities {
     constructor() {
@@ -22,12 +23,14 @@ class core_activities {
     check_stop_signal() {
 
         try {
-  
+
             //TODO: Implement the check stop funcionality
-            let ShouldStop=true;
+            let ShouldStop=false;
+
             if (ShouldStop) {
                 let LogLevel="Info"
                 console.log('LogLevel: ' + LogLevel + ' / ' + ' Message: ' + process.env.LOGMESSAGE_STOP_PROCESS_REQUESTED)
+                return ShouldStop;
             } 
             else{
 

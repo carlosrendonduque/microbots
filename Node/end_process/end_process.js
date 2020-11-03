@@ -12,7 +12,10 @@ class end_process {
             global.STATES['PROCESS_FINISHED']=  process.env.LOGMESSAGE_STATE_PROCESS_FINISHED;
             global.state=global.STATES['PROCESS_FINISHED'];
             CoreObj.save_log("Trace", global.STATES['PROCESS_FINISHED']);
-            process.kill(process.pid)
+           
+            //process.abort();
+            //process.exit()
+            //process.kill(process.id)
 
             //TODO: Code to force the termination of  processes representing applications used in the business process being automated
         }

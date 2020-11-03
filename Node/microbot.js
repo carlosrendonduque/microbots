@@ -14,7 +14,6 @@ const microbot = {};
 
 //Pre-initialization
 global.CONFIG = []; // create an empty CONFIG dictionary when the bot is starting
-
 //initialization
 //Read configuration file and initialize applications used in the process.
 let transition = "";
@@ -37,10 +36,24 @@ async function transition_to_get_data(transition) {
             
             //console.log(data);
             //return body;
+            let con=0;
             data.forEach(obj => {
+                con+=1;
                 console.log(uniqid());
                 Object.entries(obj).forEach(([key, value]) => {
                     console.log(`${key} ${value}`);
+                    if (CoreObj.check_stop_signal()) {
+                        
+                        //TODO: Move this block to end_process function. For some reason is not working
+                        EndProcessObj.end_process();
+                        global.STATES['PROCESS_FINISHED']=  process.env.LOGMESSAGE_STATE_PROCESS_FINISHED;
+                        global.state=global.STATES['PROCESS_FINISHED'];
+                        CoreObj.save_log("Trace", global.STATES['PROCESS_FINISHED']);
+                        CoreObj.save_log("Trace", process.env.LOGMESSAGE_STOP_PROCESS_BY_SIGNAL);
+                        process.kill(process.pid)
+                        //TODO: Same as above. Move this block to end_process function. For some reason is not working
+
+                    };
                 });
                 console.log('-------------------');
             });
@@ -49,10 +62,16 @@ async function transition_to_get_data(transition) {
         }
     }
     else {
+        //TODO: Move this block to end_process function. For some reason is not working
         global.TRANSITIONS['SYSTEM_EXCEPTION'] = process.env.LOGMESSAGE_TRANSITION_SYSTEM_EXCEPTION;
         CoreObj.save_log("Trace", global.TRANSITIONS['SYSTEM_EXCEPTION']);
+        global.STATES['PROCESS_FINISHED']=  process.env.LOGMESSAGE_STATE_PROCESS_FINISHED;
+        global.state=global.STATES['PROCESS_FINISHED'];
+        CoreObj.save_log("Trace", global.STATES['PROCESS_FINISHED']);
         EndProcessObj.end_process();
-        //terminetodoelchiste()
+        process.kill(process.pid)
+        //TODO: Same as above. Move this block to end_process function. For some reason is not working
+        
     }
 }
 
