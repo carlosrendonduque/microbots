@@ -12,7 +12,7 @@ class kill_all_processes {
 
           global.LOG_PROCESS['KILLING_PROCESSES'] = process.env.LOGMESSAGE_KILLING_PROCESSES;
           //TODO: Code to force the termination of  processes representing applications used in the business process being automated
-          CoreObj.save_log("Trace", global.LOG_PROCESS['KILLING_PROCESSES'])
+          CoreObj.save_log("Trace", global.LOG_PROCESS['KILLING_PROCESSES']);
         }
         catch (e) {
 

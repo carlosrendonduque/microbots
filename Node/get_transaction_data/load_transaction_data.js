@@ -18,6 +18,7 @@ class load_transaction_data {
       //An example with fake information is provided, please change the code below 
       const data = await fetch('https://jsonplaceholder.typicode.com/users?_limit=3')
       //const data = await fetch('https://jsonplaceholder.typicode.com/users')
+      //const data = await fetch('https://jsonplaceholder.typicode.com/photos')
         .then(response => response.json())
       
       return data

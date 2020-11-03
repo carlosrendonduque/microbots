@@ -6,12 +6,26 @@ class core_activities {
     constructor() {
   
     }
-    save_log(LogLevel, Message) {
+
+
+    message(LogLevel, Message) {
+      return new Promise(resolve => {
+         resolve= 'LogLevel: ' + LogLevel + ' / ' + ' Message: ' + Message 
+         console.log(resolve);
+      });
+    }
+    
+    async save_log(LogLevel, Message) {
 
       try {
 
           //TODO: Implement save log logic in the backend and the calling here
-            console.log('LogLevel: ' + LogLevel + ' / ' + ' Message: ' + Message)
+           // let Result = await console.log('LogLevel: ' + LogLevel + ' / ' + ' Message: ' + Message).then(result)
+          //let result = await this.message(LogLevel, Message);
+          let result = await this.message(LogLevel, Message);
+
+          return result;
+            
         }
         catch (e) {
           console.log(e);

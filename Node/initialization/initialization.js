@@ -29,6 +29,7 @@ class initialization {
           global.LOG_PROCESS['AUTOMATION_STARTED']="";
           global.LOG_PROCESS['KILLING_PROCESSES']="";
           global.LOG_PROCESS['OPENING_APPLICATIONS']="";
+          global.LOG_PROCESS['CLOSING_APPLICATIONS']="";
           global.LOG_PROCESS['LOADING_TRANSACTION_DATA']="";
 
           global.TRANSITIONS=[];
