@@ -4,8 +4,6 @@ global.CONFIG = []; // create an empty CONFIG dictionary when the bot is startin
 
 describe('init_all_settings.js tests', () => {
     describe('init_all_settings.initialize_all_settings() Test', () => {
-
-        
         it('Validate production environment', () => {
             process.env.MICROBOT_ENVIRONMENT = 'production';
             init_all_settings.initialize_all_settings();     

@@ -7,17 +7,13 @@ const InitAllAppSetObj = require("../initialization/init_all_applications");
 
 
 describe('initialization.js tests', () => {
-    describe('initialization.initialize() Test', () => {
-
-        
-        it('Validate first running', () => {
-            require('dotenv').config();
-            global.CONFIG = []; 
-            initObj.initialize();     
-            expect(process.env.LOGMESSAGE_AUTOMATION_STARTED).to.equal(global.LOG_PROCESS['AUTOMATION_STARTED']);
-        });
-
-        
+  describe('initialization.initialize() Test', () => {
+    it('Validate first running', () => {
+      require('dotenv').config();
+      global.CONFIG = [];
+      initObj.initialize();
+      expect(process.env.LOGMESSAGE_AUTOMATION_STARTED).to.equal(global.LOG_PROCESS['AUTOMATION_STARTED']);
     });
+  });
 
 });

@@ -9,7 +9,6 @@ class end_process {
 
   }
 
-
   async end_process() {
 
     try {
